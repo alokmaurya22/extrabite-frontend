@@ -70,7 +70,7 @@ function GraphSection() {
       <div className="mt-8 text-center">
         <h3 className="text-2xl font-semibold text-[#FF7401]">
           Impact In Numbers:
-          <span className="text-white text-3xl font-bold mx-2">13342</span>+
+          <span className="text-white text-3xl font-bold mx-2">34</span>+
           Meals Donated
         </h3>
       </div>
