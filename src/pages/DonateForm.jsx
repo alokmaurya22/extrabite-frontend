@@ -20,7 +20,9 @@ const DonationForm = () => {
     foodName: "",
     description: "",
     quantity: "",
-    expiryDateTime: "",
+    expiryDate: "", // separate date
+    expiryTime: "", // separate time
+    expiryDateTime: "", // keep for compatibility
     isFree: true,
     price: "",
     location: "",
@@ -43,6 +45,27 @@ const DonationForm = () => {
   const extractPinCode = (address) => {
     const match = address && address.match(/\b\d{6}\b/);
     return match ? match[0] : null;
+  };
+
+  // Helper to get min date for expiry (today)
+  const getMinDate = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  // Helper to get current local date and time in ISO 8601 format (YYYY-MM-DDTHH:mm:ss)
+  const getLocalDateTime = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
   };
 
   const handleChange = (e) => {
@@ -91,16 +114,32 @@ const DonationForm = () => {
     setErrorMsg("");
     setLoading(true); // Show global loading
 
+    // Compose expiryDateTime from date and time (24hr)
+    let expiryDateTime = "";
+    if (formData.expiryDate && formData.expiryTime) {
+      // Always set seconds to 00
+      const [h, m] = formData.expiryTime.split(":");
+      expiryDateTime = `${formData.expiryDate}T${h}:${m}:00`;
+    }
+
     // Basic validation
     if (
       !formData.foodName ||
       !formData.description ||
       !formData.quantity ||
-      !formData.expiryDateTime ||
+      !formData.expiryDate ||
+      !formData.expiryTime ||
       !formData.location ||
       !formData.foodType
     ) {
       setErrorMsg("Please fill all required fields.");
+      setLoading(false);
+      return;
+    }
+
+    // Prevent expiry in the past
+    if (expiryDateTime && new Date(expiryDateTime) < new Date()) {
+      setErrorMsg("Expiry time cannot be in the past.");
       setLoading(false);
       return;
     }
@@ -139,11 +178,14 @@ const DonationForm = () => {
         imageUrl = await uploadToCloudinary(imageFile);
       }
 
+      // Set createdDateTime to current local date and time in ISO 8601 format
+      const createdDateTime = getLocalDateTime();
+
       const payload = {
         foodName: formData.foodName,
         description: formData.description,
         quantity: formData.quantity,
-        expiryDateTime: formData.expiryDateTime,
+        expiryDateTime: expiryDateTime, // always 24hr format
         free: formData.isFree,
         price: formData.isFree ? 0 : parseFloat(formData.price),
         location: formData.location,
@@ -153,7 +195,9 @@ const DonationForm = () => {
         refrigerationAvailable:
           formData.foodType === "PRECOOKED" ? formData.refrigerationAvailable : undefined,
         imageUrl: imageUrl || undefined,
+        createdDateTime: createdDateTime,
       };
+      //console.log(payload);
 
       await axios.post(`${import.meta.env.VITE_API_BASE_URL}/donations`, payload, {
         headers: {
@@ -260,20 +304,30 @@ const DonationForm = () => {
               />
             </div>
 
-            {/* Expiry DateTime */}
+            {/* Expiry Date & Time (with AM/PM) */}
             <div className="mx-7 mb-1">
               <label className="text-sm text-gray-700 font-medium">
-                Select expiry time:
+                Select expiry date and time:
               </label>
             </div>
-            <div className="mx-7">
+            <div className="mx-7 flex gap-2 mb-4">
               <input
-                name="expiryDateTime"
-                type="datetime-local"
-                value={formData.expiryDateTime}
+                name="expiryDate"
+                type="date"
+                value={formData.expiryDate}
+                min={getMinDate()}
                 onChange={handleChange}
                 required
-                className="w-full border border-gray-300 rounded-lg p-3 outline-none"
+                className="border border-gray-300 rounded-lg p-3 outline-none w-1/2"
+              />
+              <input
+                name="expiryTime"
+                type="time"
+                value={formData.expiryTime}
+                onChange={handleChange}
+                required
+                className="border border-gray-300 rounded-lg p-3 outline-none w-1/3"
+                step="60"
               />
             </div>
 
