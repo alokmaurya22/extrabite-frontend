@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Nav2 from "../components/Header/Nav2";
 import Footer from "../components/Footer/Footer";
+import { MapPin } from "lucide-react";
 
 const BrowseDonations = () => {
   const [donations, setDonations] = useState([]);
@@ -108,7 +109,6 @@ const BrowseDonations = () => {
     } else if (filters.sort === "RECENT_FIRST") {
       filtered.sort((a, b) => new Date(b.createdDateTime) - new Date(a.createdDateTime));
     }
-
     setDonations(filtered);
   };
 
@@ -263,6 +263,7 @@ const BrowseDonations = () => {
                   timerCountLeft = (item.countdownTime || 0) - passedTime;
                   timerLabel = 'Expiring in :';
                 }
+                // console.log(item);
                 return (
                   <div
                     key={index}
@@ -319,13 +320,32 @@ const BrowseDonations = () => {
                       </p>
                     )}
                     <p className="text-sm">
-                      Location: <span className="font-semibold">{item.location}</span>
+                      Location: <span className="font-semibold">{item.location}</span><a
+                        href={`https://www.google.com/maps?q=${item.geolocation}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block align-middle ml-2"
+                        title="View on map"
+                      >
+                        <span className="font-bold text-[#FF7401]"><MapPin className="inline-block" size={15} /> View on Map </span>
+                      </a>
                     </p>
                     <p className="text-sm">
                       Delivery: <span className="font-semibold">{item.deliveryType}</span>
                     </p>
                     <p className="text-sm">
                       Donor: <span className="font-semibold">{item.donorName}</span>
+                    </p>
+                    <p className="text-sm">
+                      Refrigerated:{" "}
+                      <span
+                        className={`text-xs px-2 py-1 rounded-full ${item.refrigerationAvailable === true
+                          ? "bg-green-200 text-green-800"
+                          : "bg-blue-200 text-blue-800"
+                          }`}
+                      >
+                        {item.refrigerationAvailable === true ? "Yes" : "No"}
+                      </span>
                     </p>
                   </div>
                 );

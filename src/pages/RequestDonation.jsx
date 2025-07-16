@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Nav2 from "../components/Header/Nav2";
@@ -60,8 +60,7 @@ const RequestDonation = () => {
     } catch (error) {
       console.error("Failed to request donation:", error);
       alert(
-        "Request failed: " +
-        (error.response?.data?.message || error.message)
+        "Request failed: " + (error.response?.data?.message || error.message)
       );
     }
   };
@@ -76,30 +75,79 @@ const RequestDonation = () => {
         <Nav2 />
         <div className="px-4 py-10 max-w-4xl mx-auto">
           {loading ? (
-            <p className="text-center text-gray-300">Loading donation details...</p>
+            <p className="text-center text-gray-300">
+              Loading donation details...
+            </p>
           ) : !donation ? (
-            <p className="text-center text-red-400 font-medium">Donation not found.</p>
+            <p className="text-center text-red-400 font-medium">
+              Donation not found.
+            </p>
           ) : (
             <div className="bg-white text-black rounded-2xl shadow-xl overflow-hidden">
               <img
-                src={donation.imageUrl || "https://placehold.co/600x400?text=No+Image"}
+                src={
+                  donation.imageUrl ||
+                  "https://placehold.co/600x400?text=No+Image"
+                }
                 className="w-full h-64 object-cover"
                 alt={donation.foodName}
               />
               <div className="p-6 space-y-4">
-                <h2 className="text-3xl font-bold text-[#FF7401]">{donation.foodName}</h2>
+                <h2 className="text-3xl font-bold text-[#FF7401]">
+                  {donation.foodName}
+                </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <p><Tag className="inline-block mr-1" size={16} /><strong>Description:</strong> {donation.description}</p>
-                  <p><strong>Quantity:</strong> {donation.quantity}</p>
-                  <p><MapPin className="inline-block mr-1" size={16} /><strong>Location:</strong> {donation.location}</p>
-                  <p><Truck className="inline-block mr-1" size={16} /><strong>Delivery Type:</strong> {donation.deliveryType}</p>
-                  <p><strong>Free:</strong> {donation.free ? "Yes" : "No"}</p>
+                  <p>
+                    <Tag className="inline-block mr-1" size={16} />
+                    <strong>Description:</strong> {donation.description}
+                  </p>
+                  <p>
+                    <strong>Quantity:</strong> {donation.quantity}
+                  </p>
+                  <p>
+                    <Truck className="inline-block mr-1" size={16} />
+                    <strong>Delivery Type:</strong> {donation.deliveryType}
+                  </p>
+                  <p>
+                    <strong>Free:</strong> {donation.free ? "Yes" : "No"}
+                  </p>
                   {!donation.free && (
-                    <p><strong>Price:</strong> ₹{donation.price}</p>
+                    <p>
+                      <strong>Price:</strong> ₹{donation.price}
+                    </p>
                   )}
-                  <p><User className="inline-block mr-1" size={16} /><strong>Donor:</strong> {donation.donorName}</p>
-                  <p><strong>Status:</strong> {donation.status}</p>
+                  <p>
+                    <User className="inline-block mr-1" size={16} />
+                    <strong>Donor:</strong> {donation.donorName}
+                  </p>
+                  <p>
+                    <strong>Status:</strong> {donation.status}
+                  </p>
+
+                  <p>
+                    <MapPin className="inline-block mr-1" size={16} />
+                    <strong>Location:</strong> {donation.location}<a
+                      href={`https://www.google.com/maps?q=${donation.geolocation}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block align-middle ml-2"
+                      title="View on map"
+                    >
+                      <span className="font-bold text-[#FF7401]"><MapPin className="inline-block" size={15} /> View on Map </span>
+                    </a>
+                  </p>
+                  <p>
+                    <strong>Refrigerated:</strong>{" "}
+                    <span
+                      className={`text-xs px-2 py-1 rounded-full ${donation.refrigerationAvailable === true
+                        ? "bg-green-200 text-green-800"
+                        : "bg-blue-200 text-blue-800"
+                        }`}
+                    >
+                      {donation.refrigerationAvailable === true ? "Yes" : "No"}
+                    </span>
+                  </p>
                 </div>
 
                 {donation.status === "AVAILABLE" ? (
