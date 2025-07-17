@@ -21,6 +21,7 @@ const OurTeam = () => {
             description: "The mastermind behind ExtraBite's architecture and backend systems. Alok orchestrated the entire project, designed the API structure, built the robust backend infrastructure, and led the development from conception to deployment.",
             skills: ["Backend Development", "System Architecture", "API Design", "Project Leadership"],
             image: "/src/assets/team/alok.jpg",
+            img_url: "https://res.cloudinary.com/dl1dutqmd/image/upload/v1752781540/alok_wbvsgw.jpg",
             gradient: "from-blue-500 to-purple-600",
             bgGradient: "from-blue-500/10 to-purple-600/5",
             borderGradient: "from-blue-500/20 to-purple-600/20",
@@ -36,7 +37,8 @@ const OurTeam = () => {
             role: "Frontend Specialist & UX Designer",
             description: "The creative force behind ExtraBite's beautiful interface. Akhilesh crafted the smooth UI/UX, implemented stunning animations, and ensured the platform is both visually appealing and highly functional.",
             skills: ["React.js", "UI/UX Design", "Animation", "Responsive Design"],
-            image: "/src/assets/team/akhilesh.jpg",
+            image: "/src/assets/team/akhilesh.jpg" || "https://res.cloudinary.com/dl1dutqmd/image/upload/v1752781535/akhilesh_omhteg.jpg",
+            img_url: "https://res.cloudinary.com/dl1dutqmd/image/upload/v1752781535/akhilesh_omhteg.jpg",
             gradient: "from-pink-500 to-orange-600",
             bgGradient: "from-pink-500/10 to-orange-600/5",
             borderGradient: "from-pink-500/20 to-orange-600/20",
@@ -53,6 +55,7 @@ const OurTeam = () => {
             description: "The supportive foundation of ExtraBite's development process. Shresth created comprehensive design mockups in Figma, maintained detailed project documentation, and provided crucial support throughout the development lifecycle.",
             skills: ["Figma Design", "Documentation", "Project Support", "Design Systems"],
             image: "/src/assets/team/shresth.jpg",
+            img_url: "https://res.cloudinary.com/dl1dutqmd/image/upload/v1752781501/Shresth_lwkdhj.jpg",
             gradient: "from-green-500 to-emerald-600",
             bgGradient: "from-green-500/10 to-emerald-600/5",
             borderGradient: "from-green-500/20 to-emerald-600/20",
@@ -114,11 +117,11 @@ const OurTeam = () => {
                     {teamMembers.map((member, index) => (
                         <div key={index} className={`bg-gradient-to-br ${member.bgGradient} rounded-2xl p-8 border border-slate-700/50 hover:border-orange-500/30 transition-all duration-300 hover:transform hover:scale-105`}>
                             <div className="text-center mb-6">
-                                <div className={`inline-flex items-center justify-center w-22 h-22 rounded-full bg-gradient-to-r ${member.gradient} mb-4`}>
+                                <div className={`inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r ${member.gradient} mb-4`}>
                                     <img
-                                        src={member.image}
+                                        src={(member.img_url) ? (member.img_url) : (member.image)}
                                         alt={member.name}
-                                        className="w-21 h-21 rounded-full object-cover border-2 border-white/20"
+                                        className="w-24 h-24 rounded-full object-cover border-2 border-white/20"
                                     />
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
