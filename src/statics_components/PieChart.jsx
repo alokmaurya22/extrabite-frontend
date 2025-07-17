@@ -12,6 +12,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const PieChart = ({ data, region }) => {
     const breakdown = data.sourceBreakdown || data.foodWasteBreakdown;
 
+    // Check if breakdown is a valid object before proceeding
+    if (!breakdown || typeof breakdown !== 'object' || Object.keys(breakdown).length === 0) {
+        return null;
+    }
+
     const chartData = {
         labels: Object.keys(breakdown),
         datasets: [
