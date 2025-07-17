@@ -35,6 +35,9 @@ function Nav() {
               <button className="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold transition duration-300 hover:bg-gray-700 active:bg-gray-900">
                 <Link to="/stats" className="text-lg font-semibold">Stats</Link>
               </button>
+              <button className="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold transition duration-300 hover:bg-gray-700 active:bg-gray-900">
+                <Link to="/about" className="text-lg font-semibold">About Us</Link>
+              </button>
             </div>
           </div>
         </div>
@@ -62,6 +65,9 @@ function Nav() {
           </button>
           <button className="bg-gray-800 text-white px-3 py-2 rounded-md font-semibold text-lg w-1/2 transition duration-300 hover:bg-gray-700 active:bg-gray-900">
             <Link to="/stats" className="text-lg font-semibold">Stats</Link>
+          </button>
+          <button className="bg-gray-800 text-white px-3 py-2 rounded-md font-semibold text-lg w-1/2 transition duration-300 hover:bg-gray-700 active:bg-gray-900">
+            <Link to="/about" className="text-lg font-semibold">About Us</Link>
           </button>
         </div>
       )}

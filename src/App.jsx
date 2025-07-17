@@ -21,6 +21,9 @@ import StaticDisplay from './pages/StaticsDisplay'
 import LoadingOverlay from './components/Loading/LoadingOverlay';
 import { LoadingProvider } from './context/LoadingContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import AboutUs from './pages/AboutUs';
+import OurTeam from './pages/OurTeam';
+
 
 function App() {
   return (
@@ -35,6 +38,8 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/BrowseDonations" element={<BrowseDonations />} />
           <Route path="/ContactHelpForm" element={<ContactHelpForm />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/our-Team" element={<OurTeam />} />
 
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>

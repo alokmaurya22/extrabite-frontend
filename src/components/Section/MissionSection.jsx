@@ -1,13 +1,13 @@
 import React from "react";
-import SignUpImg from "../../assets/signup.png"; 
-import RegisterImg from "../../assets/register.png"; 
-import DonateImg from "../../assets/donate.png"; 
-import ThankYouImg from "../../assets/thankyou.png"; 
-import CollectImg from "../../assets/collect.png"; 
-import DistributeImg from "../../assets/distribute.png"; 
+import SignUpImg from "../../assets/signup.png";
+import RegisterImg from "../../assets/register.png";
+import DonateImg from "../../assets/donate.png";
+import ThankYouImg from "../../assets/thankyou.png";
+import CollectImg from "../../assets/collect.png";
+import DistributeImg from "../../assets/distribute.png";
 
-import DotImg from "../../assets/dot.png"; 
-import ArrowImg from "../../assets/arrow.png"; 
+import DotImg from "../../assets/dot.png";
+import ArrowImg from "../../assets/arrow.png";
 
 const steps = [
   {
@@ -25,8 +25,8 @@ const steps = [
     description: "Bridging the gap between hunger and hope.",
     steps: [
       { image: SignUpImg, label: "Sign up" },
-      { image: CollectImg, label: "Collect Food" },
-      { image: DistributeImg, label: "Distribute Food" },
+      { image: CollectImg, label: "Request Food" },
+      { image: DistributeImg, label: "Collect Food" },
       { image: ThankYouImg, label: "Thank you" },
     ],
   },
@@ -48,9 +48,8 @@ const Step = ({ image, label }) => {
 const DottedLine = ({ isVertical }) => {
   return (
     <div
-      className={`flex items-center justify-center ${
-        isVertical ? "flex-col space-y-3" : "flex-row space-x-2"
-      }`}
+      className={`flex items-center justify-center ${isVertical ? "flex-col space-y-3" : "flex-row space-x-2"
+        }`}
     >
       {/* Hide dots in mobile view */}
       <img
@@ -61,7 +60,7 @@ const DottedLine = ({ isVertical }) => {
       <img
         src={ArrowImg}
         alt="Arrow"
-        className={`w-6 h-auto sm:w-8 ${isVertical ? "sm:rotate-0 rotate-90" : "sm:rotate-0 rotate-90"}`} 
+        className={`w-6 h-auto sm:w-8 ${isVertical ? "sm:rotate-0 rotate-90" : "sm:rotate-0 rotate-90"}`}
       /> {/* Width and height of arrow */}
       <img
         src={DotImg}
@@ -80,7 +79,7 @@ const MissionSection = () => {
       <h2 className="text-center text-3xl sm:text-4xl font-bold text-[#FF7401]">
         Way to fulfill our mission!
       </h2>
-      <p className="text-center text-gray-300 mt-2 sm:mt-3 ">
+      <p className="text-center text-gray-300 mt-2 sm:mt-3 text-sm sm:text-lg">
         Take a step towards ending food wastage – Donate or request food effortlessly!
       </p>
 
@@ -89,10 +88,10 @@ const MissionSection = () => {
         {steps.map((section, index) => (
           <div key={index} className="text-center">
             {/* Subheading */}
-            <h3 className="text-lg sm:text-2xl font-bold text-[#FF7401]">
+            <h3 className="text-lg sm:text-3xl font-bold text-[#FF7401]">
               {section.title}
             </h3>
-            <p className="text-gray-300 text-sm sm:text-sm">
+            <p className="text-gray-300 text-sm sm:text-lg">
               {section.description}
             </p>
 

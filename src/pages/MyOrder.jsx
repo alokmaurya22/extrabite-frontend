@@ -313,7 +313,7 @@ const MyOrder = () => {
             >
               <option value="requests">Collected Food</option>
               <option value="donations">Donated Food</option>
-              <option value="myrequests2">Requested Food</option>
+              {/*<option value="myrequests2">Requested Food</option>*/}
             </select>
             <select
               className="p-3 text-lg rounded-xl bg-white text-black"
@@ -558,8 +558,8 @@ const MyOrder = () => {
                   <button
                     key={page}
                     className={`px-3 py-1 rounded ${page === currentPage
-                        ? "bg-orange-500 text-white font-bold"
-                        : "bg-gray-200 text-black"
+                      ? "bg-orange-500 text-white font-bold"
+                      : "bg-gray-200 text-black"
                       }`}
                     onClick={() => setCurrentPage(page)}
                   >
@@ -577,8 +577,8 @@ const MyOrder = () => {
             </>
           )}
         </div>
-        <Footer />
       </div >
+      <Footer />
     </>
   );
 };
