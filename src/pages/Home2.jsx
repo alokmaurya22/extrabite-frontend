@@ -19,8 +19,8 @@ function Home2() {
     <div className="bg-gradient-to-t from-[#030711] via-[#050D1E] to-[#0A1A3C] min-h-screen flex flex-col">
       <Nav2 />
       <div className="flex-grow flex items-center justify-center">
-        <h1 className="text-white text-2xl sm:text-3xl font-semibold">
-          Welcome to Extra Bite!
+        <h1 className="text-white text-2xl sm:text-3xl font-semibold mt-4">
+          <br />Welcome to Extra Bite!
         </h1>
       </div>
       <HeroSection />

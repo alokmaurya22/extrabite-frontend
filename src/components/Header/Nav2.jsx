@@ -1,11 +1,21 @@
 import { useState } from "react";
-import { Menu, X, LogOut, User } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, LogOut, User, Home, BarChart2, ShoppingBag } from "lucide-react";
 import logo from "../../assets/logo.png";
-import { Link, useNavigate } from "react-router-dom";
 import Heading from "./Heading";
+
+const NavLinks = [
+  { name: "Home", path: "/home", icon: Home },
+
+  { name: "Stats", path: "/stats", icon: BarChart2 },
+  { name: "My Contributions", path: "/my-order", icon: ShoppingBag },
+  { name: "Profile", path: "/profile", icon: User, isProfile: true },
+  { name: "Logout", path: "/logout", icon: LogOut, isLogout: true },
+];
 
 function Nav2() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -14,44 +24,90 @@ function Nav2() {
     navigate("/");
   };
 
+  // For desktop/mobile, handle logout click
+  const handleNavClick = (link) => {
+    setMenuOpen(false);
+    if (link.isLogout) {
+      handleLogout();
+    }
+  };
+
   return (
     <>
       <Heading />
       {/* Navbar */}
-      <nav className="sticky top-0 z-50 py-4 bg-transparent p-4 flex justify-between items-center w-full border-neutral-700/80 shadow-md backdrop-blur-md">
+      <nav className="sticky top-0 z-50 py-4 bg-[#051434] p-6 flex justify-between items-center w-full border-neutral-900/50 shadow-md backdrop-blur-md">
         <div className="container px-4 mx-auto flex justify-between items-center">
           {/* Logo and Title */}
-          <div className="flex items-center space-x-2">
+          <Link to="/home2" className="flex items-center space-x-2">
             <img className="h-10 w-10 cursor-pointer" src={logo} alt="logo" />
-            <Link to="/home2" className="text-lg font-semibold">
-              <span className="text-orange-500 font-bold text-xl">Extra Bite</span>
-            </Link>
-          </div>
+            <span className="text-orange-500 font-bold text-2xl">Extra Bite</span>
+          </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Link to="/home2" className="text-orange-500 font-semibold text-lg">
-              Home
-            </Link>
-            <Link to="/my-order" className="text-white font-semibold text-lg hover:text-orange-400 transition">
-              My Orders
-            </Link>
-            <Link to="/stats" className="text-white font-semibold text-lg hover:text-orange-400 transition">
-              Stats
-            </Link>
-            <Link to="/profile">
-              <div className="h-8 w-8 bg-orange-500 rounded-full flex items-center justify-center">
-                <User size={20} className="text-white" />
-              </div>
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="text-white hover:text-red-500 transition font-semibold"
-              title="Logout"
-            >
-              <LogOut size={24} />
-            </button>
-          </div>
+          <ul className="hidden md:flex items-center space-x-10 font-semibold text-lg">
+            {NavLinks.map((link) => {
+              const Icon = link.icon;
+              // For logout, always inactive (no orange highlight)
+              const isActive = !link.isLogout && location.pathname === link.path;
+              return (
+                <li key={link.name} className="relative group">
+                  {link.isLogout ? (
+                    <button
+                      onClick={handleLogout}
+                      className={`
+                        flex items-center gap-2 transition-colors duration-200
+                        text-white hover:text-orange-500
+                        focus:outline-none
+                      `}
+                    >
+                      <span
+                        className={`
+                          text-orange-500 text-xl
+                          transition-transform duration-300
+                          group-hover:animate-bounce
+                        `}
+                      >
+                        <Icon size={22} />
+                      </span>
+                      {link.name}
+                      {/* Underline on hover */}
+                      <span className={`
+                        absolute left-0 -bottom-1 h-[2px] w-0 bg-orange-500 group-hover:w-full
+                        transition-all duration-300 ease-in
+                      `}></span>
+                    </button>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      className={`
+                        flex items-center gap-2 transition-colors duration-200
+                        ${isActive ? "text-orange-500" : "text-white"}
+                      `}
+                    >
+                      <span
+                        className={`
+                          text-orange-500 text-xl
+                          transition-transform duration-300
+                          group-hover:animate-bounce
+                          ${isActive ? "animate-bounce" : ""}
+                        `}
+                      >
+                        <Icon size={22} />
+                      </span>
+                      {link.name}
+                      {/* Animated underline */}
+                      <span className={`
+                        absolute left-0 -bottom-1 h-[2px] w-0 bg-orange-500 group-hover:w-full
+                        transition-all duration-300 ease-in
+                        ${isActive ? "w-full" : ""}
+                      `}></span>
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
 
           {/* Mobile Menu Button */}
           <button
@@ -65,57 +121,75 @@ function Nav2() {
 
       {/* Full-Screen Mobile Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 bg-transparent backdrop-blur-lg flex flex-col justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex flex-col justify-center items-center z-50">
           <button
-            className="absolute top-4 right-4 text-white"
+            className="absolute top-6 right-6 text-white"
             onClick={() => setMenuOpen(false)}
           >
-            <X size={32} />
+            <X size={36} />
           </button>
-
-          <Link
-            to="/home2"
-            className="text-orange-500 font-semibold text-xl mb-4"
-            onClick={() => setMenuOpen(false)}
-          >
-            Home
-          </Link>
-
-          <Link
-            to="/my-order"
-            className="text-white text-xl font-medium mb-4"
-            onClick={() => setMenuOpen(false)}
-          >
-            My Orders
-          </Link>
-
-          <Link
-            to="/stats"
-            className="text-white text-xl font-medium mb-4"
-            onClick={() => setMenuOpen(false)}
-          >
-            Stats
-          </Link>
-
-          <Link
-            to="/profile"
-            onClick={() => setMenuOpen(false)}
-            className="mb-4"
-          >
-            <div className="h-12 w-12 bg-orange-500 rounded-full flex items-center justify-center">
-              <User size={28} className="text-white" />
-            </div>
-          </Link>
-
-          <button
-            onClick={() => {
-              setMenuOpen(false);
-              handleLogout();
-            }}
-            className="text-white bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition mt-4 flex items-center"
-          >
-            <LogOut className="mr-2" /> Logout
-          </button>
+          <ul className="space-y-8 text-2xl font-semibold">
+            {NavLinks.map((link) => {
+              const Icon = link.icon;
+              const isActive = !link.isLogout && location.pathname === link.path;
+              return (
+                <li key={link.name}>
+                  {link.isLogout ? (
+                    <button
+                      onClick={() => handleNavClick(link)}
+                      className={`
+                        flex items-center gap-3 justify-center transition-colors duration-200
+                        text-white hover:text-orange-500
+                        focus:outline-none
+                      `}
+                    >
+                      <span
+                        className={`
+                          text-orange-500 text-2xl
+                          transition-transform duration-300
+                          group-hover:animate-bounce
+                        `}
+                      >
+                        <Icon size={26} />
+                      </span>
+                      {link.name}
+                      <span className={`
+                        block h-[2px] w-0 bg-orange-500 mx-auto
+                        transition-all duration-300 ease-in
+                        group-hover:w-full
+                      `}></span>
+                    </button>
+                  ) : (
+                    <Link
+                      to={link.path}
+                      onClick={() => handleNavClick(link)}
+                      className={`
+                        flex items-center gap-3 justify-center transition-colors duration-200
+                        ${isActive ? "text-orange-500" : "text-white"}
+                      `}
+                    >
+                      <span
+                        className={`
+                          text-orange-500 text-2xl
+                          transition-transform duration-300
+                          group-hover:animate-bounce
+                          ${isActive ? "animate-bounce" : ""}
+                        `}
+                      >
+                        <Icon size={26} />
+                      </span>
+                      {link.name}
+                      <span className={`
+                        block h-[2px] w-0 bg-orange-500 mx-auto
+                        transition-all duration-300 ease-in
+                        ${isActive ? "w-full" : ""}
+                      `}></span>
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       )}
     </>

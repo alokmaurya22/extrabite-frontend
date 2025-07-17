@@ -261,11 +261,34 @@ function Signup() {
             <div className="bg-white rounded-xl p-6 max-w-lg w-full shadow-lg relative">
               <h3 className="text-lg font-bold mb-4 text-[#E87730]">Terms and Conditions</h3>
               <div className="text-sm text-gray-700 max-h-64 overflow-y-auto space-y-3">
-                <p>1. Donors and receivers are solely responsible for the safety and quality of food items exchanged.</p>
-                <p>2. Extra Bite acts only as a facilitator and does not verify the contents, hygiene, or preparation of the food.</p>
-                <p>3. Users must ensure all shared food is safe, unexpired, and handled with care.</p>
-                <p>4. Any disputes or issues arising from donations must be resolved directly between the donor and the receiver.</p>
-                <p>5. By using Extra Bite, you agree to these terms and take full responsibility for your actions.</p>
+                <p>1. Donors and receivers are solely responsible for the safety and quality of food items shared via the platform.</p>
+
+                <p>2. ExtraBite acts only as a facilitator and does not verify the contents, hygiene, preparation, or freshness of the food.</p>
+
+                <p>3. Users must ensure that all food provided is safe, unexpired, properly stored, and handled with care during the entire process.</p>
+
+                <p>4. Pre-cooked food will be considered valid for up to <strong>4 hours</strong> if stored in refrigeration, or <strong>2 hours</strong> if not. After that time, it will be automatically removed from the platform to ensure safety.</p>
+
+                <p>5. Donors must use <strong>clean packaging containers, pots, or bags</strong> while sharing food, and are expected to maintain general food hygiene.</p>
+
+                <p>6. Any disputes, miscommunication, or issues arising out of a donation must be resolved directly between the donor and the receiver.</p>
+
+                <p>7. ExtraBite takes no responsibility for any health impact, illness, contamination, or incident caused by donated food.</p>
+
+                <p>8. Misuse of the platform, including sharing unsafe items or violating ethical standards, may lead to account suspension or permanent ban.</p>
+
+                <p>9. By using ExtraBite, you agree to these terms, accept full responsibility for your actions, and acknowledge that the platform serves only as a connector between users.</p>
+
+                <p className="text-center mt-2">
+                  <a
+                    href="https://res.cloudinary.com/dl1dutqmd/image/upload/v1752788713/ExtraBite_Terms_and_Conditions_sy9q8p.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-6 px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-all duration-200"
+                  >
+                    🔗 For More Details, Click Here
+                  </a>
+                </p>
               </div>
               <div className="mt-6 text-right">
                 <button

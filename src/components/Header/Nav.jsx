@@ -1,78 +1,131 @@
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { BiMenuAltRight } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
+import { FiHome, FiLogIn, FiUserPlus, FiBarChart2, FiInfo } from "react-icons/fi";
 import logo from '../../assets/logo.png';
-import { Link } from "react-router-dom";
 import Heading from "./Heading";
 
-function Nav() {
-  const [menuOpen, setMenuOpen] = useState(false);
+const NavLinks = [
+  { name: "Home", path: "/home", icon: FiHome },
+  { name: "Sign In", path: "/Signin", icon: FiLogIn },
+  { name: "Sign Up", path: "/Signup", icon: FiUserPlus },
+  { name: "Stats", path: "/stats", icon: FiBarChart2 },
+  { name: "About Us", path: "/about", icon: FiInfo },
+];
+
+export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <>
       <Heading />
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 py-4 bg-transparent p-6 flex justify-between items-center w-full border-neutral-700/80 shadow-md backdrop-blur-md">
-        <div className="container px-4 mx-auto relative">
-          <div className="flex justify-between items-center">
-            {/* Logo and Title */}
-            <div className="flex items-center space-x-2">
-              <div className="">
-                <img className="h-10 w-10 mr-2 cursor-pointer" src={logo} alt="logo" />
-              </div>
-              <Link to="/" className="text-lg font-semibold">
-                <span className="text-orange-500 font-bold text-2xl">Extra Bite</span>
-              </Link>
-            </div>
+      <nav className="sticky top-0 z-50 py-4 bg-[#051538] p-6 flex justify-between items-center w-full border-neutral-700/80 shadow-md backdrop-blur-md">
+        <div className="container px-4 mx-auto relative flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center space-x-2">
+            <img className="h-10 w-10 mr-2 cursor-pointer" src={logo} alt="logo" />
+            <span className="text-orange-500 font-bold text-2xl">Extra Bite</span>
+          </Link>
 
-            {/* Desktop Buttons */}
-            <div className="hidden md:flex space-x-4">
-              <button className="bg-[#FFFFFF] text-orange-500 px-4 py-2 rounded-lg font-semibold transition duration-300 hover:bg-gray-200 active:bg-gray-300">
-                <Link to="/Signin" className="text-lg font-semibold">Sign In</Link>
-              </button>
-              <button className="bg-[#FF7401] text-white px-4 py-2 rounded-lg font-semibold transition duration-300 hover:bg-orange-600 active:bg-orange-700">
-                <Link to="/Signup" className="text-lg font-semibold">Sign Up</Link>
-              </button>
-              <button className="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold transition duration-300 hover:bg-gray-700 active:bg-gray-900">
-                <Link to="/stats" className="text-lg font-semibold">Stats</Link>
-              </button>
-              <button className="bg-gray-800 text-white px-4 py-2 rounded-lg font-semibold transition duration-300 hover:bg-gray-700 active:bg-gray-900">
-                <Link to="/about" className="text-lg font-semibold">About Us</Link>
-              </button>
-            </div>
-          </div>
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex space-x-10 font-semibold text-lg">
+            {NavLinks.map((link) => {
+              const Icon = link.icon;
+              const isActive = location.pathname === link.path;
+              return (
+                <li key={link.name} className="relative group">
+                  <Link
+                    to={link.path}
+                    className={`
+                      flex items-center gap-2 transition-colors duration-200
+                      ${isActive ? "text-orange-500" : "text-white"}
+                    `}
+                  >
+                    {/* Animated Icon */}
+                    <span
+                      className={`
+                        text-orange-500 text-xl
+                        transition-transform duration-300
+                        group-hover:animate-bounce
+                        ${isActive ? "animate-bounce" : ""}
+                      `}
+                    >
+                      <Icon />
+                    </span>
+                    {link.name}
+                    {/* Animated underline */}
+                    <span className={`
+                      absolute left-0 -bottom-1 h-[2px] w-0 bg-orange-500 group-hover:w-full
+                      transition-all duration-300 ease-in
+                      ${isActive ? "w-full" : ""}
+                    `}></span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden text-white"
+            onClick={toggleMobileMenu}
+          >
+            {isMobileMenuOpen ? <RxCross2 size={30} /> : <BiMenuAltRight size={32} />}
+          </button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button className="md:hidden text-white" onClick={() => setMenuOpen(true)}>
-          <Menu size={28} />
-        </button>
       </nav>
 
-      {/* Full-Screen Mobile Menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 bg-transparent backdrop-blur-lg flex flex-col justify-center items-center z-50">
-          {/* Close Button */}
-          <button className="absolute top-4 right-4 text-white" onClick={() => setMenuOpen(false)}>
-            <X size={32} />
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex flex-col justify-center items-center z-50">
+          <button
+            className="absolute top-6 right-6 text-white"
+            onClick={closeMobileMenu}
+          >
+            <RxCross2 size={36} />
           </button>
-
-          {/* Mobile Menu Buttons */}
-          <button className="bg-[#FFFFFF] text-orange-500 px-3 py-2 rounded-md font-semibold text-lg mb-4 w-1/2 transition duration-300 hover:bg-gray-200 active:bg-gray-300">
-            <Link to="/Signin" className="text-lg font-semibold">Sign In</Link>
-          </button>
-          <button className="bg-[#FF7401] text-white px-3 py-2 rounded-md font-semibold text-lg mb-4 w-1/2 transition duration-300 hover:bg-orange-600 active:bg-orange-700">
-            <Link to="/Signup" className="text-lg font-semibold">Sign Up</Link>
-          </button>
-          <button className="bg-gray-800 text-white px-3 py-2 rounded-md font-semibold text-lg w-1/2 transition duration-300 hover:bg-gray-700 active:bg-gray-900">
-            <Link to="/stats" className="text-lg font-semibold">Stats</Link>
-          </button>
-          <button className="bg-gray-800 text-white px-3 py-2 rounded-md font-semibold text-lg w-1/2 transition duration-300 hover:bg-gray-700 active:bg-gray-900">
-            <Link to="/about" className="text-lg font-semibold">About Us</Link>
-          </button>
+          <ul className="space-y-8 text-2xl font-semibold">
+            {NavLinks.map((link) => {
+              const Icon = link.icon;
+              const isActive = location.pathname === link.path;
+              return (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    onClick={closeMobileMenu}
+                    className={`
+                      flex items-center gap-3 justify-center transition-colors duration-200
+                      ${isActive ? "text-orange-500" : "text-white"}
+                    `}
+                  >
+                    <span
+                      className={`
+                        text-orange-500 text-2xl
+                        transition-transform duration-300
+                        group-hover:animate-bounce
+                        ${isActive ? "animate-bounce" : ""}
+                      `}
+                    >
+                      <Icon />
+                    </span>
+                    {link.name}
+                    <span className={`
+                      block h-[2px] w-0 bg-orange-500 mx-auto
+                      transition-all duration-300 ease-in
+                      ${isActive ? "w-full" : ""}
+                    `}></span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       )}
     </>
   );
 }
-
-export default Nav;

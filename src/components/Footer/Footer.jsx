@@ -27,8 +27,8 @@ function Footer() {
             <Link to="/about" className="hover:underline">
               About Us
             </Link>
-            <Link to="/source" className="hover:underline">
-              Source
+            <Link to="/our-team" className="hover:underline">
+              Developers
             </Link>
             <Link to="/ContactHelpForm" className=" hover:underline">
               Contact & Help
