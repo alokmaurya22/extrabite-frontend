@@ -36,7 +36,7 @@ const OurTeam = () => {
             name: "Akhilesh Gupta",
             role: "Frontend Specialist & UX Designer",
             description: "The creative force behind ExtraBite's beautiful interface. Akhilesh crafted the smooth UI/UX, implemented stunning animations, and ensured the platform is both visually appealing and highly functional.",
-            skills: ["React.js", "UI/UX Design", "Animation", "Responsive Design"],
+            skills: ["React.js", "JavaScript", "UI/UX Design", "Animation", "Responsive Design"],
             image: "/src/assets/team/akhilesh.jpg" || "https://res.cloudinary.com/dl1dutqmd/image/upload/v1752781535/akhilesh_omhteg.jpg",
             img_url: "https://res.cloudinary.com/dl1dutqmd/image/upload/v1752781535/akhilesh_omhteg.jpg",
             gradient: "from-pink-500 to-orange-600",
