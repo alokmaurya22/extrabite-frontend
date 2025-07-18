@@ -17,19 +17,19 @@ function Footer() {
         <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-sm md:text-lg">
           <Link
             to="/about"
-            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+            className="hover:text-black hover:underline underline-offset-4 transition font-semibold"
           >
             About Us
           </Link>
           <Link
             to="/our-team"
-            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+            className="hover:text-black hover:underline underline-offset-4 transition font-semibold"
           >
             Developers
           </Link>
           <Link
             to="/ContactHelpForm"
-            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+            className="hover:text-black hover:underline underline-offset-4 transition font-semibold"
           >
             Contact & Help
           </Link>
@@ -37,7 +37,7 @@ function Footer() {
             href="https://drive.google.com/file/d/18ydl6Rhm6LroLDt46GnDDKVCM8Rc3f_N/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+            className="hover:text-black hover:underline underline-offset-4 transition font-semibold"
           >
             T&amp;C
           </a>
