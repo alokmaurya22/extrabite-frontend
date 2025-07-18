@@ -6,8 +6,7 @@ import Heading from "./Heading";
 
 const NavLinks = [
   { name: "Home", path: "/home", icon: Home },
-
-  { name: "Stats", path: "/stats", icon: BarChart2 },
+  { name: "Statistics", path: "/stats", icon: BarChart2 },
   { name: "My Contributions", path: "/my-order", icon: ShoppingBag },
   { name: "Profile", path: "/profile", icon: User, isProfile: true },
   { name: "Logout", path: "/logout", icon: LogOut, isLogout: true },
@@ -121,36 +120,41 @@ function Nav2() {
 
       {/* Full-Screen Mobile Menu */}
       {menuOpen && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex flex-col justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#0a1122]/80 backdrop-blur-[6px] flex flex-col justify-center items-center z-50">
           <button
             className="absolute top-6 right-6 text-white"
             onClick={() => setMenuOpen(false)}
           >
             <X size={36} />
           </button>
-          <ul className="space-y-8 text-2xl font-semibold">
+          <ul className="w-full max-w-60 space-y-4">
             {NavLinks.map((link) => {
               const Icon = link.icon;
               const isActive = !link.isLogout && location.pathname === link.path;
               return (
-                <li key={link.name}>
+                <li key={link.name} className="flex justify-center">
                   {link.isLogout ? (
                     <button
                       onClick={() => handleNavClick(link)}
                       className={`
-                        flex items-center gap-3 justify-center transition-colors duration-200
-                        text-white hover:text-orange-500
-                        focus:outline-none
-                      `}
+                  w-full flex items-center gap-3 px-6 py-2 rounded-xl
+                  font-semibold text-base
+                  bg-white/5 hover:bg-orange-500/10
+                  border border-orange-500
+                  shadow-md transition-all duration-200
+                  ${isActive ? "ring-2 ring-orange-500 bg-orange-500/10" : ""}
+                  text-white hover:scale-105 active:scale-100
+                  backdrop-blur-[2px]
+                `}
                     >
                       <span
                         className={`
-                          text-orange-500 text-2xl
-                          transition-transform duration-300
-                          group-hover:animate-bounce
-                        `}
+                    text-orange-500 text-xl
+                    transition-transform duration-300
+                    group-hover:animate-bounce
+                  `}
                       >
-                        <Icon size={26} />
+                        <Icon size={22} />
                       </span>
                       {link.name}
                     </button>
@@ -159,19 +163,25 @@ function Nav2() {
                       to={link.path}
                       onClick={() => handleNavClick(link)}
                       className={`
-                        flex items-center gap-3 justify-center transition-colors duration-200
-                        ${isActive ? "text-orange-500 border-b-2 border-orange-500" : "text-white"}
-                      `}
+                  w-full flex items-center gap-3 px-4 py-2 rounded-xl
+                  font-semibold text-base
+                  bg-white/5 hover:bg-orange-500/10
+                  border border-orange-500
+                  shadow-md transition-all duration-200
+                  ${isActive ? "ring-2 ring-orange-500 bg-orange-500/10 text-orange-400" : ""}
+                  text-white hover:scale-105 active:scale-100
+                  backdrop-blur-[2px]
+                `}
                     >
                       <span
                         className={`
-                          text-orange-500 text-2xl
-                          transition-transform duration-300
-                          group-hover:animate-bounce
-                          ${isActive ? "animate-bounce" : ""}
-                        `}
+                    text-orange-500 text-xl
+                    transition-transform duration-300
+                    group-hover:animate-bounce
+                    ${isActive ? "animate-bounce" : ""}
+                  `}
                       >
-                        <Icon size={26} />
+                        <Icon size={22} />
                       </span>
                       {link.name}
                     </Link>

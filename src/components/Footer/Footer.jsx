@@ -1,69 +1,61 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import logo from '../../assets/logo2.png'
+import logo from '../../assets/logo2.png';
 
 function Footer() {
   return (
-    <div className="bg-[#E87730] text-white py-6 px-10">
-
-      {/* Meals Donated */}
-      <div className="text-m font-bold mt-4 md:mt-0 ml-auto" style={{ textAlign: "right" }}>
-        Total Meals Donated: <span className="text-black text-lg">34 +</span>
-      </div>
-
-      <div className="bg-[#E87730] text-white  flex flex-col items-center">
-        {/* Logo and Links */}
-        <div className="flex flex-col md:flex-row justify-between items-center w-full max-w-6xl">
-          {/* Logo */}
-          <div className="text-xl font-bold flex items-center">
-            <span className="text-2xl mr-2"><img className="h-10 w-10 mr-2 cursor-pointer" src={logo} alt="logo" />
-            </span> {/* logo  */}
-            Extra Bite
-          </div>
-
-          {/* Navigation Links */}
-          <div className="flex space-x-6 text-sm mt-4 md:mt-0">
-            <Link to="/about" className="hover:underline">
-              About Us
-            </Link>
-            <Link to="/our-team" className="hover:underline">
-              Developers
-            </Link>
-            <Link to="/ContactHelpForm" className=" hover:underline">
-              Contact & Help
-            </Link>
-            <Link to="/terms" className="hover:underline">
-              T&C
-            </Link>
-          </div>
-          {/* Social Media and Contact*/}
-          <div className="flex space-x-4">
-            <a href="#" className="text-lg hover:text-black">
-              <FaFacebookF />
-            </a>
-            <a href="#" className="text-lg hover:text-black">
-              <FaInstagram />
-            </a>
-            <a href="#" className="text-lg hover:text-black">
-              <FaTwitter />
-            </a>
-          </div>
-
-
-
+    <footer className="bg-[#E87730] text-white px-4 py-3 md:px-10 md:py-4">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 md:gap-0">
+        {/* Logo and Brand */}
+        <div className="flex items-center mb-2 md:mb-0">
+          <img className="h-8 w-8 mr-2" src={logo} alt="logo" />
+          <span className="font-bold text-lg md:text-2xl tracking-wide">Extra Bite</span>
         </div>
 
-        {/* Social Media and Contact */}
-        {/* <div className="flex justify-center items-center w-full max-w-6xl mt-6"> */}
-        {/* Social Icons */}
+        {/* Navigation Links */}
+        <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-1 text-sm md:text-lg">
+          <Link
+            to="/about"
+            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+          >
+            About Us
+          </Link>
+          <Link
+            to="/our-team"
+            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+          >
+            Developers
+          </Link>
+          <Link
+            to="/ContactHelpForm"
+            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+          >
+            Contact & Help
+          </Link>
+          <a
+            href="https://drive.google.com/file/d/18ydl6Rhm6LroLDt46GnDDKVCM8Rc3f_N/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-black hover:underline underline-offset-4 transition font-bold"
+          >
+            T&amp;C
+          </a>
+        </div>
 
-
-
-        {/* </div> */}
+        {/* Social + Meals Donated */}
+        <div className="flex flex-col items-center md:items-end gap-1">
+          <div className="flex space-x-3 mb-1">
+            <a href="#" className="text-lg hover:text-black transition"><FaFacebookF /></a>
+            <a href="#" className="text-lg hover:text-black transition"><FaInstagram /></a>
+            <a href="#" className="text-lg hover:text-black transition"><FaTwitter /></a>
+          </div>
+          <div className="text-base md:text-lg text-black font-bold">
+            Meals Donated: <span className="font-bold">34+</span>
+          </div>
+        </div>
       </div>
-    </div>
-
+    </footer>
   );
 }
 

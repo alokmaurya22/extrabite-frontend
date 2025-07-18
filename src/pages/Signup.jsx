@@ -281,7 +281,7 @@ function Signup() {
 
                 <p className="text-center mt-2">
                   <a
-                    href="https://res.cloudinary.com/dl1dutqmd/image/upload/v1752788713/ExtraBite_Terms_and_Conditions_sy9q8p.pdf"
+                    href="https://drive.google.com/file/d/18ydl6Rhm6LroLDt46GnDDKVCM8Rc3f_N/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-6 px-6 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-all duration-200"

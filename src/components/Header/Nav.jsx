@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { BiMenuAltRight } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 import { FiHome, FiLogIn, FiUserPlus, FiBarChart2, FiInfo } from "react-icons/fi";
+import { Menu } from "lucide-react";
 import logo from '../../assets/logo.png';
 import Heading from "./Heading";
 
@@ -10,7 +11,7 @@ const NavLinks = [
   { name: "Home", path: "/home", icon: FiHome },
   { name: "Sign In", path: "/Signin", icon: FiLogIn },
   { name: "Sign Up", path: "/Signup", icon: FiUserPlus },
-  { name: "Stats", path: "/stats", icon: FiBarChart2 },
+  { name: "Statistics", path: "/stats", icon: FiBarChart2 },
   { name: "About Us", path: "/about", icon: FiInfo },
 ];
 
@@ -72,44 +73,50 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-orange-500"
             onClick={toggleMobileMenu}
           >
-            {isMobileMenuOpen ? <RxCross2 size={30} /> : <BiMenuAltRight size={32} />}
+            <Menu size={28} />
           </button>
         </div>
       </nav>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex flex-col justify-center items-center z-50">
+        <div className="fixed inset-0 bg-[#0a1122]/80 backdrop-blur-[6px] flex flex-col justify-center items-center z-50">
           <button
             className="absolute top-6 right-6 text-white"
             onClick={closeMobileMenu}
           >
             <RxCross2 size={36} />
           </button>
-          <ul className="space-y-8 text-2xl font-semibold">
+          <ul className="w-full max-w-60 space-y-4">
             {NavLinks.map((link) => {
               const Icon = link.icon;
               const isActive = location.pathname === link.path;
               return (
-                <li key={link.name}>
+                <li key={link.name} className="flex justify-center">
                   <Link
                     to={link.path}
                     onClick={closeMobileMenu}
                     className={`
-                      flex items-center gap-3 justify-center transition-colors duration-200
-                      ${isActive ? "text-orange-500 border-b-2 border-orange-500" : "text-white"}
-                    `}
+                w-full flex items-center gap-3 px-4 py-2 rounded-xl
+                font-semibold text-base
+                bg-white/5 hover:bg-orange-500/10
+                border border-orange-500
+                shadow-md transition-all duration-200
+                ${isActive ? "ring-2 ring-orange-500 bg-orange-500/10 text-orange-400" : ""}
+                text-white hover:scale-105 active:scale-100
+                backdrop-blur-[2px]
+              `}
                   >
                     <span
                       className={`
-                        text-orange-500 text-2xl
-                        transition-transform duration-300
-                        group-hover:animate-bounce
-                        ${isActive ? "animate-bounce" : ""}
-                      `}
+                  text-orange-500 text-xl
+                  transition-transform duration-300
+                  group-hover:animate-bounce
+                  ${isActive ? "animate-bounce" : ""}
+                `}
                     >
                       <Icon />
                     </span>
