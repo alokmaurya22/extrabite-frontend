@@ -153,11 +153,6 @@ function Nav2() {
                         <Icon size={26} />
                       </span>
                       {link.name}
-                      <span className={`
-                        block h-[2px] w-0 bg-orange-500 mx-auto
-                        transition-all duration-300 ease-in
-                        group-hover:w-full
-                      `}></span>
                     </button>
                   ) : (
                     <Link
@@ -165,7 +160,7 @@ function Nav2() {
                       onClick={() => handleNavClick(link)}
                       className={`
                         flex items-center gap-3 justify-center transition-colors duration-200
-                        ${isActive ? "text-orange-500" : "text-white"}
+                        ${isActive ? "text-orange-500 border-b-2 border-orange-500" : "text-white"}
                       `}
                     >
                       <span
@@ -179,11 +174,6 @@ function Nav2() {
                         <Icon size={26} />
                       </span>
                       {link.name}
-                      <span className={`
-                        block h-[2px] w-0 bg-orange-500 mx-auto
-                        transition-all duration-300 ease-in
-                        ${isActive ? "w-full" : ""}
-                      `}></span>
                     </Link>
                   )}
                 </li>

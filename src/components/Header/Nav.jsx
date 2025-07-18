@@ -100,7 +100,7 @@ export default function Navbar() {
                     onClick={closeMobileMenu}
                     className={`
                       flex items-center gap-3 justify-center transition-colors duration-200
-                      ${isActive ? "text-orange-500" : "text-white"}
+                      ${isActive ? "text-orange-500 border-b-2 border-orange-500" : "text-white"}
                     `}
                   >
                     <span
@@ -114,11 +114,6 @@ export default function Navbar() {
                       <Icon />
                     </span>
                     {link.name}
-                    <span className={`
-                      block h-[2px] w-0 bg-orange-500 mx-auto
-                      transition-all duration-300 ease-in
-                      ${isActive ? "w-full" : ""}
-                    `}></span>
                   </Link>
                 </li>
               );
