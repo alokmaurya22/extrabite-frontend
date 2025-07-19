@@ -1,19 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-    Heart,
-    Users,
-    Target,
-    Workflow,
-    Star,
-    Code,
-    Rocket,
-    ArrowRight,
-    CheckCircle,
-    Clock,
-    MapPin,
-    Shield
-} from 'lucide-react';
+import { Heart, Users, Target, Workflow, Star, Code, Rocket, ArrowRight, CheckCircle, Clock, MapPin, Shield } from 'lucide-react';
 import Nav from '../components/Header/Nav';
 import Footer from '../components/Footer/Footer';
 import logo from '../assets/logo2.png';

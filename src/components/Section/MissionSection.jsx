@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import SignUpImg from "../../assets/signup.png";
 import RegisterImg from "../../assets/register.png";
 import DonateImg from "../../assets/donate.png";
 import ThankYouImg from "../../assets/thankyou.png";
 import CollectImg from "../../assets/collect.png";
 import DistributeImg from "../../assets/distribute.png";
-
+import { ArrowRight } from 'lucide-react';
 import DotImg from "../../assets/dot.png";
 import ArrowImg from "../../assets/arrow.png";
 
@@ -77,6 +78,26 @@ const MissionSection = () => {
     <div className="text-white py-16 px-4">
       {/* Section Title */}
       <h2 className="text-center text-3xl sm:text-4xl font-bold text-[#FF7401]">
+        Leftover Ingredients? Let's Cook Something Amazing!
+      </h2>
+
+      <p className="text-center text-gray-300 mt-2 sm:mt-3 text-sm sm:text-lg">
+        Don’t let those extra items sit unused in your kitchen. Use our smart recipe generator to create something delicious with what you already have!
+      </p>
+
+      {/* Centered Button */}
+      <div className="flex justify-center mt-6 mb-16">
+        <Link
+          to="/recipe-gen"
+          className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
+        >
+          Generate a Recipe <ArrowRight className="w-5 h-5" />
+        </Link>
+      </div>
+
+
+      {/* Section Title */}
+      <h2 className="text-center text-3xl sm:text-4xl font-bold text-[#FF7401] pt-16">
         Way to fulfill our mission!
       </h2>
       <p className="text-center text-gray-300 mt-2 sm:mt-3 text-sm sm:text-lg">
@@ -112,7 +133,7 @@ const MissionSection = () => {
           </div>
         ))}
       </div>
-    </div>
+    </div >
   );
 };
 

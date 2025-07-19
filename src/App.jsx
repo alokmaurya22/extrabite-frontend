@@ -23,6 +23,7 @@ import { LoadingProvider } from './context/LoadingContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import AboutUs from './pages/AboutUs';
 import OurTeam from './pages/OurTeam';
+import Recipe_genrate from './pages/Recipe_generate';
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
           <Route path="/ContactHelpForm" element={<ContactHelpForm />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/our-Team" element={<OurTeam />} />
+          <Route path="/recipe-gen" element={<Recipe_genrate />} />
 
           {/* Protected Routes */}
           <Route element={<ProtectedRoute />}>
