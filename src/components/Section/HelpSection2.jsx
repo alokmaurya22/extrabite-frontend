@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+import { ArrowRight } from 'lucide-react';
+
 
 function HelpSection2() {
   const [donations, setDonations] = useState([]);
@@ -102,7 +105,24 @@ function HelpSection2() {
           }
         `}
       </style>
+      {/* Section Title */}
+      <h2 className="text-center text-3xl sm:text-4xl font-bold text-[#FF7401]">
+        Leftover Ingredients? Let's Cook Something Amazing!
+      </h2>
 
+      <p className="text-center text-gray-300 mt-2 sm:mt-3 text-sm sm:text-lg">
+        Don’t let those extra items sit unused in your kitchen. Use our smart recipe generator to create something delicious with what you already have!
+      </p>
+
+      {/* Centered Button */}
+      <div className="flex justify-center mt-6 mb-16">
+        <Link
+          to="/recipe-gen"
+          className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
+        >
+          Generate a Recipe <ArrowRight className="w-5 h-5" />
+        </Link>
+      </div>
       <div className="text-center">
         <h2 className="text-3xl font-bold text-[#FF7401]">Help Where it matters most</h2>
         <p className="text-lg mt-2">

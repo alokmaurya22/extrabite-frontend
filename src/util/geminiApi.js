@@ -13,7 +13,7 @@ Selected Cuisine: ${selectedCuisine}
 Selected Meal Type: ${finalMealType}
 Output Language: ${language}
 
-🧠 Important Instructions:
+ Important Instructions:
 1. All content including recipe titles, descriptions, ingredients, and instructions **must be written in the selected language only: ${language}**.
    - Do not include any translation, transliteration, or English equivalents.
    - Do not use multiple languages. Only use the specified selected language.
@@ -36,7 +36,7 @@ Each recipe must match the selected:
 - Meal Type
 - Output language
 
-🧾 Recipe JSON format (must follow strictly):
+ Recipe JSON format (must follow strictly):
 
 Each recipe must be an object with the following fields ONLY:
 {
