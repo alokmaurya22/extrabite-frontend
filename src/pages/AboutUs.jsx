@@ -87,15 +87,15 @@ const AboutUs = () => {
                     that transforms surplus food into hope. We connect generous donors with those in need, creating a sustainable
                     ecosystem that fights hunger while reducing food waste.
                 </p>
-
+                {/*
                 <div className="flex gap-4 mb-16">
                     <Link
                         to="/our-team"
                         className="px-8 py-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full font-semibold hover:from-orange-600 hover:to-orange-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center gap-2"
                     >
                         Meet Our Team <ArrowRight className="w-5 h-5" />
-                    </Link>
-                </div>
+                    </Lin
+                    */}
             </section>
 
             {/* Mission Section */}
