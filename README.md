@@ -1,6 +1,6 @@
 # 🍽️ ExtraBite: Save Food, Feed Lives
 
-[Live Site](https://extrabite.vercel.app) • [Swagger Docs](https://extrabite-backend-2.onrender.com/swagger-ui) • [API Docs (Postman)](https://documenter.getpostman.com/view/30078893/2sA35KXuta) • [GitHub Repo](https://github.com/AlokMaurya0/FoodDonationPlatform)
+[Live Site](https://extrabite.vercel.app) • [Github URL (BACKEND)](https://github.com/alokmaurya22/extrabite-backend-2) • [Swagger Docs](https://extrabite-backend-2.onrender.com/swagger-ui) 
 
 **ExtraBite** is a full-stack web platform that connects food donors with receivers (NGOs or individuals) to reduce food wastage and hunger. Whether you're a household, restaurant, or organization, ExtraBite makes it easy to donate leftover food — and even easier for those in need to find it, request it, and collect it.
 
